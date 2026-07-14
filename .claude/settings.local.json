@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet new *)",
+      "Bash(dotnet add *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet clean *)",
+      "Bash(taskkill /f /im DicomClassifier.exe)",
+      "Bash(kill -f 31996)",
+      "Bash(powershell -Command \"Stop-Process -Id 31996 -Force\")",
+      "Bash(start \"y:/test lijc/25 dicom分类/DicomClassifier/DicomClassifier/bin/Debug/net8.0-windows/DicomClassifier.exe\")",
+      "Bash(tasklist /FI \"IMAGENAME eq DicomClassifier.exe\")",
+      "Bash(./DicomClassifier.exe)",
+      "Bash(echo \"Exit: $?\")"
+    ]
+  }
+}

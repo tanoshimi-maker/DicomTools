@@ -1,0 +1,57 @@
+## .NET / Visual Studio
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]ogs/
+[Ll]og/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.tss
+*.dbmdl
+*.jfm
+*.[Cc]ache
+*.lscache
+
+# VS Code
+.vscode/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+*.nuget.g.props
+*.nuget.g.targets
+
+# Publish profiles
+**/[Pp]ublish/[Pp]rofiles/*.pubxml
+**/[Pp]ublish/[Pp]rofiles/*.pubxml.user
+
+# OS files
+Thumbs.db
+*.DS_Store
+Desktop.ini
+
+# .NET local tool manifest
+dotnet-tools.json
