@@ -1,0 +1,189 @@
+<Window x:Class="PMTALL.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" ResizeMode="NoResize"
+        Width="420" Height="300"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        Topmost="True">
+
+    <!-- Outer border with drop shadow + rounded corners -->
+    <Border Background="#1A1A2E" CornerRadius="14"
+            BorderBrush="#00B4D8" BorderThickness="1.2">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="30" Color="#00B4D8" Opacity="0.4"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Center content -->
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <!-- Animated Icon -->
+                <TextBlock x:Name="IconText" Text="⚡" FontSize="52"
+                           HorizontalAlignment="Center"
+                           Foreground="#00B4D8"
+                           RenderTransformOrigin="0.5,0.5"
+                           Margin="0,0,0,12">
+                    <TextBlock.RenderTransform>
+                        <ScaleTransform x:Name="IconScale" ScaleX="1" ScaleY="1"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <!-- Title -->
+                <TextBlock x:Name="TitleText" Text="DICOM Toolkits"
+                           FontSize="24" FontWeight="SemiBold"
+                           Foreground="#E0E0E0"
+                           HorizontalAlignment="Center"
+                           Opacity="0"
+                           Margin="0,0,0,4"/>
+
+                <!-- Version -->
+                <TextBlock x:Name="VersionText" Text="v3.2"
+                           FontSize="13"
+                           Foreground="#8899AA"
+                           HorizontalAlignment="Center"
+                           Opacity="0"
+                           Margin="0,0,0,24"/>
+            </StackPanel>
+
+            <!-- Progress bar row -->
+            <StackPanel Grid.Row="1" Margin="40,0,40,24">
+                <ProgressBar x:Name="LoadingBar"
+                             IsIndeterminate="True"
+                             Height="3"
+                             BorderThickness="0"
+                             Margin="0,0,0,10">
+                    <ProgressBar.Resources>
+                        <Style TargetType="ProgressBar">
+                            <Setter Property="Background" Value="#2A2A3E"/>
+                            <Setter Property="Foreground" Value="#00B4D8"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ProgressBar">
+                                        <Border Background="{TemplateBinding Background}"
+                                                CornerRadius="2" BorderThickness="0">
+                                            <Border x:Name="PART_Track"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsIndeterminate" Value="True">
+                                                <Setter TargetName="PART_Track" Property="Background">
+                                                    <Setter.Value>
+                                                        <VisualBrush TileMode="Tile"
+                                                                     Viewport="0,0,0.15,1" ViewportUnits="RelativeToBoundingBox">
+                                                            <VisualBrush.Visual>
+                                                                <Border Background="#00B4D8" CornerRadius="2"
+                                                                        Width="100" Height="3"/>
+                                                            </VisualBrush.Visual>
+                                                            <VisualBrush.RelativeTransform>
+                                                                <TranslateTransform x:Name="IndeterminateTranslate"/>
+                                                            </VisualBrush.RelativeTransform>
+                                                        </VisualBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ProgressBar.Resources>
+                </ProgressBar>
+
+                <!-- Status text -->
+                <TextBlock x:Name="StatusText"
+                           FontSize="11"
+                           Foreground="#8899AA"
+                           HorizontalAlignment="Center"
+                           Opacity="0">
+                    Loading modules...
+                </TextBlock>
+            </StackPanel>
+
+            <!-- Footer line -->
+            <Border Grid.Row="2" Background="#2A2A3E" CornerRadius="8"
+                    Margin="40,0,40,18" Padding="8,4">
+                <TextBlock x:Name="FooterText"
+                           Text="Powered by fo-dicom"
+                           FontSize="10"
+                           Foreground="#555577"
+                           HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
+    </Border>
+
+    <!-- Animations -->
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard x:Name="SplashStoryboard">
+
+                    <!-- Window fade in (0-200ms) -->
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1" Duration="0:0:0.25">
+                        <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"/>
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+
+                    <!-- Icon pulse: scale 1.0 → 1.18, loop back -->
+                    <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     From="1.0" To="1.18" Duration="0:0:0.8"
+                                     BeginTime="0:0:0.25"
+                                     AutoReverse="True" RepeatBehavior="Forever">
+                        <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseInOut"/>
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetName="IconScale"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     From="1.0" To="1.18" Duration="0:0:0.8"
+                                     BeginTime="0:0:0.25"
+                                     AutoReverse="True" RepeatBehavior="Forever">
+                        <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseInOut"/>
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+
+                    <!-- Title fade in (delay 300ms) -->
+                    <DoubleAnimation Storyboard.TargetName="TitleText"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1" Duration="0:0:0.45"
+                                     BeginTime="0:0:0.3">
+                        <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"/>
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+
+                    <!-- Version fade in (delay 450ms) -->
+                    <DoubleAnimation Storyboard.TargetName="VersionText"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1" Duration="0:0:0.4"
+                                     BeginTime="0:0:0.45">
+                        <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"/>
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+
+                    <!-- Status text fade in (delay 600ms) -->
+                    <DoubleAnimation Storyboard.TargetName="StatusText"
+                                     Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1" Duration="0:0:0.35"
+                                     BeginTime="0:0:0.6">
+                        <DoubleAnimation.EasingFunction>
+                            <CubicEase EasingMode="EaseOut"/>
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+</Window>
