@@ -406,6 +406,42 @@
                                 </TextBlock>
                             </StackPanel>
                         </Border>
+
+                        <Border Height="1" Background="{StaticResource BorderBrush}" Margin="8,4"/>
+
+                        <!-- Viewer Tab -->
+                        <Border ToolTip="DICOM Viewer" Cursor="Hand">
+                            <StackPanel MouseLeftButtonDown="ViewerTab_Click">
+                                <Grid Width="40" Height="40">
+                                    <TextBlock Text="🔍" FontSize="16"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsViewerMode}" Value="True">
+                                                        <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                                <TextBlock Text="Viewer" FontSize="8"
+                                           HorizontalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsViewerMode}" Value="True">
+                                                    <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                 </Border>
 
