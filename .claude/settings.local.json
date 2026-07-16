@@ -19,7 +19,8 @@
       "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; dotnet new sln --name PMTALL --force\")",
       "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; Get-ChildItem -Filter '*.sln'\")",
       "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; dotnet new sln --force; Get-ChildItem -Filter '*.sln' -Name\")",
-      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; Get-ChildItem -Filter '*.sln*' -Name\")"
+      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; Get-ChildItem -Filter '*.sln*' -Name\")",
+      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; Remove-Item 'PMTALL2.slnx' -Force; Remove-Item 'DicomClassifier.slnx' -Force 2>&1; Get-ChildItem -Filter '*.sln*' -Name\")"
     ]
   }
 }
