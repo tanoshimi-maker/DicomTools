@@ -11,7 +11,15 @@
       "Bash(start \"y:/test lijc/25 dicom分类/DicomClassifier/DicomClassifier/bin/Debug/net8.0-windows/DicomClassifier.exe\")",
       "Bash(tasklist /FI \"IMAGENAME eq DicomClassifier.exe\")",
       "Bash(./DicomClassifier.exe)",
-      "Bash(echo \"Exit: $?\")"
+      "Bash(echo \"Exit: $?\")",
+      "Bash(powershell.exe -NoProfile -Command \"Get-ChildItem -Path 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier' -Filter 'PMTALL*' -Name\")",
+      "Read(//mnt/y/test_lijc/25 dicom分类/**)",
+      "Bash(powershell.exe -NoProfile -Command \"cd 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; dotnet new sln --name PMTALL --force; dotnet sln PMTALL.sln add PMTALL/PMTALL.csproj\")",
+      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; dotnet new sln --name PMTALL2 --force; Get-ChildItem -Filter 'PMTALL2*'\")",
+      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; dotnet new sln --name PMTALL --force\")",
+      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; Get-ChildItem -Filter '*.sln'\")",
+      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; dotnet new sln --force; Get-ChildItem -Filter '*.sln' -Name\")",
+      "Bash(powershell.exe -NoProfile -Command \"Set-Location 'y:\\\\test_lijc\\\\25 dicom分类\\\\DicomClassifier'; Get-ChildItem -Filter '*.sln*' -Name\")"
     ]
   }
 }
